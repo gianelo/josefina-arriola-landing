@@ -22,6 +22,11 @@ interface EventItem {
   link?: string;
 }
 
+interface StoryChapter {
+  label: string;
+  body: string;
+}
+
 interface SocialLink {
   label: string;
   href: string;
@@ -41,6 +46,13 @@ export interface SiteContent {
     ctaSecondary?: CTA;
   };
 
+  story: {
+    title: string;
+    chapters: StoryChapter[];
+    closing?: string;
+    cta?: CTA;
+  };
+
   books: {
     title: string;
     subtitle?: string;
@@ -57,6 +69,21 @@ export interface SiteContent {
     title: string;
     body: string;
     image?: string;
+  };
+
+  speaking: {
+    title: string;
+    subtitle?: string;
+    buttonLabel: string;
+    email?: string;
+  };
+
+  newsletter: {
+    title: string;
+    subtitle?: string;
+    placeholder: string;
+    buttonLabel: string;
+    disclaimer?: string;
   };
 
   contact: {
@@ -85,6 +112,26 @@ export const site: SiteContent = {
       "Soy Josefina Arriola. Una historia real de abandono, abuso y supervivencia que se transformó en fe, identidad y propósito. Si alguna vez sentiste que tu historia estaba rota, esto es para ti.",
     ctaPrimary: { label: "Conoce mi libro", href: "#books" },
     ctaSecondary: { label: "Sobre mí", href: "#about" },
+  },
+
+  story: {
+    title: "Mi historia",
+    chapters: [
+      {
+        label: "Antes",
+        body: "Abandono, abuso, silencio. Pasé por lugares donde muchos no regresan. Hubo noches donde pensé que mi historia ya estaba rota sin vuelta atrás.",
+      },
+      {
+        label: "El encuentro",
+        body: "Y entonces conocí a Dios. No fue con grandes palabras ni en una cruzada. Fue Él quien me encontró a mí, en medio del silencio, cuando ya no me quedaba nada para dar.",
+      },
+      {
+        label: "Hoy",
+        body: "Hoy camino con Cristo. Soy pastora, autora y testimonio vivo de que lo que el mundo rompió, Él lo restaura. Mi historia no terminó en cenizas — apenas estaba empezando.",
+      },
+    ],
+    closing: "Toda la historia está en el libro.",
+    cta: { label: "Leer Lágrimas que solo el cielo ve", href: "#books" },
   },
 
   books: {
@@ -133,6 +180,23 @@ export const site: SiteContent = {
     body:
       "Soy Josefina Arriola, pastora, autora y testimonio vivo de que Dios restaura lo que el mundo rompió. Pasé por lugares donde muchos no regresan: el abandono, el abuso, el silencio. Pero aun en la adversidad, desde que tengo uso de razón, siempre tuve un corazón noble, generoso y dadivoso. Hoy camino con Cristo y entiendo que Él me dio, como a Salomón, sabiduría, prudencia y un corazón tan grande como la arena del mar (1 Reyes 4:29). Me gusta recibir bendiciones, pero para bendecir a otros. Mi oración es que mi historia sea puente para la tuya.",
     image: "/about-josefina.jpg",
+  },
+
+  speaking: {
+    title: "¿Quieres invitarme a hablar?",
+    subtitle:
+      "Si lideras una iglesia, grupo o evento y crees que mi testimonio puede bendecir a tu comunidad, me encantaría acompañarte.",
+    buttonLabel: "Enviar invitación",
+    email: "invitaciones@josefinaarriola.com",
+  },
+
+  newsletter: {
+    title: "Recibe un mensaje de esperanza cada semana",
+    subtitle:
+      "Palabras, oración y testimonios directos a tu correo. Sin sermones largos — solo un recordatorio de que no estás solo.",
+    placeholder: "tu@correo.com",
+    buttonLabel: "Suscribirme",
+    disclaimer: "Tu correo es sagrado para mí. Nunca lo comparto. Dios te bendiga.",
   },
 
   contact: {

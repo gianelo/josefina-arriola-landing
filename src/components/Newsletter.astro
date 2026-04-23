@@ -1,0 +1,38 @@
+---
+// Captura de email para el newsletter semanal.
+// TODO: wire `action` to Beehiiv / ConvertKit / Mailchimp endpoint.
+import type { SiteContent } from "../content/site";
+import Button from "./Button.astro";
+
+interface Props {
+  data: SiteContent["newsletter"];
+}
+
+const { data } = Astro.props;
+---
+<section id="newsletter" class="section section--alt">
+  <div class="container newsletter">
+    <header class="section__header">
+      <h2>{data.title}</h2>
+      {data.subtitle && <p>{data.subtitle}</p>}
+    </header>
+
+    <form class="newsletter__form" action="#" method="post">
+      <label class="newsletter__field">
+        <span class="sr-only">Correo electrónico</span>
+        <input
+          type="email"
+          name="email"
+          placeholder={data.placeholder}
+          required
+          autocomplete="email"
+        />
+      </label>
+      <Button type="submit" variant="primary">{data.buttonLabel}</Button>
+    </form>
+
+    {data.disclaimer && (
+      <p class="newsletter__disclaimer">{data.disclaimer}</p>
+    )}
+  </div>
+</section>

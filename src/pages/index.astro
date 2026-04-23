@@ -3,9 +3,12 @@
 // To add/reorder sections, just move the components below.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
+import Story from "../components/Story.astro";
 import Books from "../components/Books.astro";
-import Events from "../components/Events.astro";
 import About from "../components/About.astro";
+import Events from "../components/Events.astro";
+import SpeakingInquiry from "../components/SpeakingInquiry.astro";
+import Newsletter from "../components/Newsletter.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../content/site";
@@ -13,9 +16,12 @@ import { site } from "../content/site";
 <BaseLayout title={site.title} description={site.description}>
   <main>
     <Hero data={site.hero} />
+    <Story data={site.story} />
     <Books data={site.books} />
-    <Events data={site.events} />
     <About data={site.about} />
+    <Events data={site.events} />
+    <SpeakingInquiry data={site.speaking} />
+    <Newsletter data={site.newsletter} />
     <Contact data={site.contact} />
   </main>
   <Footer data={site.footer} />

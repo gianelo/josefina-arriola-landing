@@ -1,0 +1,50 @@
+---
+// Form B2B para que iglesias / podcasters / eventos inviten a Josefina a hablar.
+// TODO: wire `action` to Formspree / Resend / Netlify Forms endpoint.
+import type { SiteContent } from "../content/site";
+import Button from "./Button.astro";
+
+interface Props {
+  data: SiteContent["speaking"];
+}
+
+const { data } = Astro.props;
+---
+<section id="speaking" class="section">
+  <div class="container speaking">
+    <header class="section__header">
+      <h2>{data.title}</h2>
+      {data.subtitle && <p>{data.subtitle}</p>}
+    </header>
+
+    <form class="form" action="#" method="post">
+      <label>
+        <span>Tu nombre</span>
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        <span>Iglesia, organización o evento</span>
+        <input type="text" name="organization" required />
+      </label>
+      <label>
+        <span>Fecha tentativa</span>
+        <input type="text" name="date" placeholder="Ej: fin de junio 2026" />
+      </label>
+      <label>
+        <span>Correo de contacto</span>
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>
+        <span>Cuéntame sobre tu comunidad</span>
+        <textarea name="message" rows="4" required></textarea>
+      </label>
+      <Button type="submit" variant="primary">{data.buttonLabel}</Button>
+    </form>
+
+    {data.email && (
+      <p class="contact__fallback">
+        O escríbeme directamente a <a href={`mailto:${data.email}`}>{data.email}</a>
+      </p>
+    )}
+  </div>
+</section>

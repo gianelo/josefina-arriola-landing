@@ -1,0 +1,37 @@
+---
+// Mini-testimonio en 3 capítulos: antes → encuentro → hoy.
+import type { SiteContent } from "../content/site";
+import Button from "./Button.astro";
+
+interface Props {
+  data: SiteContent["story"];
+}
+
+const { data } = Astro.props;
+---
+<section id="story" class="section">
+  <div class="container">
+    <header class="section__header">
+      <h2>{data.title}</h2>
+    </header>
+
+    <div class="story">
+      {data.chapters.map((ch) => (
+        <article class="story__chapter">
+          <span class="story__label">{ch.label}</span>
+          <p class="story__body">{ch.body}</p>
+        </article>
+      ))}
+    </div>
+
+    {data.closing && <p class="story__closing">{data.closing}</p>}
+
+    {data.cta && (
+      <div class="story__cta">
+        <Button href={data.cta.href} variant="primary">
+          {data.cta.label}
+        </Button>
+      </div>
+    )}
+  </div>
+</section>
