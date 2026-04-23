@@ -1,0 +1,21 @@
+---
+// Simple two-column about section (stacks on mobile).
+import type { SiteContent } from "../content/site";
+
+interface Props {
+  data: SiteContent["about"];
+}
+
+const { data } = Astro.props;
+---
+<section id="about" class="section">
+  <div class="container about">
+    {data.image && (
+      <img src={data.image} alt="" class="about__image" loading="lazy" />
+    )}
+    <div>
+      <h2>{data.title}</h2>
+      <p>{data.body}</p>
+    </div>
+  </div>
+</section>

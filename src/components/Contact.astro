@@ -1,0 +1,43 @@
+---
+// Static contact form — no backend.
+// Wire `action` to Formspree, Resend, a Netlify form, or your own endpoint.
+import type { SiteContent } from "../content/site";
+import Button from "./Button.astro";
+
+interface Props {
+  data: SiteContent["contact"];
+}
+
+const { data } = Astro.props;
+---
+<section id="contact" class="section section--alt">
+  <div class="container contact">
+    <header class="section__header">
+      <h2>{data.title}</h2>
+      {data.subtitle && <p>{data.subtitle}</p>}
+    </header>
+
+    <!-- TODO: replace `action` with your form backend URL (Formspree / Resend / Netlify). -->
+    <form class="form" action="#" method="post">
+      <label>
+        <span>Nombre</span>
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        <span>Correo</span>
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        <span>Mensaje</span>
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+      <Button type="submit" variant="primary">Enviar mensaje</Button>
+    </form>
+
+    {data.email && (
+      <p class="contact__fallback">
+        O escríbeme directamente a <a href={`mailto:${data.email}`}>{data.email}</a>
+      </p>
+    )}
+  </div>
+</section>

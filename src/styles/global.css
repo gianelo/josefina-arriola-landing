@@ -1,0 +1,262 @@
+/* =========================================================
+   Design tokens — change these to re-theme the whole site.
+   Palette: warm earth tones (tierra, miel, crema).
+   ========================================================= */
+:root {
+  /* Spacing scale (consistent rhythm across all sections) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+
+  /* Colors — cálidos marrones */
+  --color-bg: #fbf6ee;        /* crema papel */
+  --color-bg-alt: #f2e7d4;    /* crema cálida */
+  --color-text: #2b1d12;      /* espresso profundo */
+  --color-muted: #6b5540;     /* nogal */
+  --color-accent: #9a6a3a;    /* miel / caramelo */
+  --color-border: #e0d1b6;    /* beige suave */
+
+  /* Typography & layout */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --max-width: 72rem;
+  --radius: 0.5rem;
+}
+
+/* =========================================================
+   Base resets & element defaults
+   ========================================================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 {
+  line-height: 1.2;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   Layout primitives — reuse these instead of repeating styles.
+   ========================================================= */
+
+/* Constrains content width and adds consistent horizontal padding. */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+/* Shared vertical rhythm for every section. */
+.section { padding-block: var(--space-6); }
+.section--alt { background: var(--color-bg-alt); }
+
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+.section__header p {
+  color: var(--color-muted);
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+/* =========================================================
+   Buttons (used by the reusable Button.astro component)
+   ========================================================= */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn:hover { text-decoration: none; opacity: 0.92; transform: translateY(-1px); }
+.btn--primary { background: var(--color-accent); color: #fff; }
+.btn--secondary {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero {
+  padding-block: var(--space-6);
+  text-align: center;
+  background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+}
+.hero__inner { max-width: 46rem; }
+.hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-2);
+}
+.hero__title {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  color: var(--color-text);
+}
+.hero__subtitle {
+  color: var(--color-muted);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-4);
+}
+.hero__actions {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   Grid (mobile-first, grows with viewport)
+   ========================================================= */
+.grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* =========================================================
+   Card (books / products)
+   ========================================================= */
+.card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.card img {
+  border-radius: var(--radius);
+  margin-bottom: var(--space-2);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  width: 100%;
+}
+.card__link { margin-top: auto; font-weight: 600; }
+
+/* =========================================================
+   Events
+   ========================================================= */
+.events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.event {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+@media (min-width: 640px) {
+  .event { grid-template-columns: 12rem 1fr; align-items: start; }
+}
+.event__date { font-weight: 600; color: var(--color-accent); }
+.event__location { color: var(--color-muted); margin: 0 0 var(--space-1); }
+
+/* =========================================================
+   About
+   ========================================================= */
+.about {
+  display: grid;
+  gap: var(--space-4);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .about { grid-template-columns: 1fr 1.5fr; }
+}
+.about__image { border-radius: var(--radius); }
+
+/* =========================================================
+   Contact form
+   ========================================================= */
+.contact { max-width: 40rem; }
+.form { display: grid; gap: var(--space-2); }
+.form label { display: grid; gap: 0.25rem; font-weight: 500; }
+.form input,
+.form textarea {
+  font: inherit;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+}
+.form input:focus,
+.form textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+.contact__fallback {
+  text-align: center;
+  color: var(--color-muted);
+  margin-top: var(--space-3);
+}
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-4);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  background: var(--color-bg-alt);
+}
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+  text-align: center;
+}
+.footer__social {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: var(--space-3);
+}
+@media (min-width: 640px) {
+  .footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}

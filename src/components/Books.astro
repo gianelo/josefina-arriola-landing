@@ -1,0 +1,38 @@
+---
+// Renders a grid of books/products with external links.
+import type { SiteContent } from "../content/site";
+
+interface Props {
+  data: SiteContent["books"];
+}
+
+const { data } = Astro.props;
+---
+<section id="books" class="section">
+  <div class="container">
+    <header class="section__header">
+      <h2>{data.title}</h2>
+      {data.subtitle && <p>{data.subtitle}</p>}
+    </header>
+
+    <div class="grid">
+      {data.items.map((item) => (
+        <article class="card">
+          {item.image && (
+            <img src={item.image} alt={item.title} loading="lazy" />
+          )}
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card__link"
+          >
+            Leer más →
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

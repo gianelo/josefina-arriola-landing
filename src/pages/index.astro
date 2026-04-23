@@ -1,0 +1,22 @@
+---
+// Home page — composes every section from `site.ts`.
+// To add/reorder sections, just move the components below.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Books from "../components/Books.astro";
+import Events from "../components/Events.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../content/site";
+---
+<BaseLayout title={site.title} description={site.description}>
+  <main>
+    <Hero data={site.hero} />
+    <Books data={site.books} />
+    <Events data={site.events} />
+    <About data={site.about} />
+    <Contact data={site.contact} />
+  </main>
+  <Footer data={site.footer} />
+</BaseLayout>

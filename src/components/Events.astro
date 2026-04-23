@@ -1,0 +1,45 @@
+---
+// Lists upcoming events. Dates are formatted at build time.
+import type { SiteContent } from "../content/site";
+
+interface Props {
+  data: SiteContent["events"];
+}
+
+const { data } = Astro.props;
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+---
+<section id="events" class="section section--alt">
+  <div class="container">
+    <header class="section__header">
+      <h2>{data.title}</h2>
+      {data.subtitle && <p>{data.subtitle}</p>}
+    </header>
+
+    <ul class="events">
+      {data.items.map((event) => (
+        <li class="event">
+          <time class="event__date" datetime={event.date}>
+            {formatDate(event.date)}
+          </time>
+          <div class="event__body">
+            <h3>{event.name}</h3>
+            <p class="event__location">{event.location}</p>
+            <p>{event.description}</p>
+            {event.link && (
+              <a href={event.link} target="_blank" rel="noopener noreferrer">
+                Más información →
+              </a>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

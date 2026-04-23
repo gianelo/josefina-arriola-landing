@@ -1,0 +1,17 @@
+---
+// Reusable button. Renders an <a> when `href` is provided, otherwise a <button>.
+// Variants: "primary" (filled) | "secondary" (outline).
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary";
+  type?: "button" | "submit" | "reset";
+}
+
+const { href, variant = "primary", type = "button" } = Astro.props;
+const className = `btn btn--${variant}`;
+---
+{href ? (
+  <a href={href} class={className}><slot /></a>
+) : (
+  <button type={type} class={className}><slot /></button>
+)}

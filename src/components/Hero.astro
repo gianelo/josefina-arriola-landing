@@ -1,0 +1,31 @@
+---
+// Hero receives all content via the `data` prop — no hardcoded copy.
+import type { SiteContent } from "../content/site";
+import Button from "./Button.astro";
+
+interface Props {
+  data: SiteContent["hero"];
+}
+
+const { data } = Astro.props;
+---
+<section class="hero">
+  <div class="container hero__inner">
+    {data.eyebrow && <p class="hero__eyebrow">{data.eyebrow}</p>}
+    <h1 class="hero__title">{data.title}</h1>
+    <p class="hero__subtitle">{data.subtitle}</p>
+
+    <div class="hero__actions">
+      {data.ctaPrimary && (
+        <Button href={data.ctaPrimary.href} variant="primary">
+          {data.ctaPrimary.label}
+        </Button>
+      )}
+      {data.ctaSecondary && (
+        <Button href={data.ctaSecondary.href} variant="secondary">
+          {data.ctaSecondary.label}
+        </Button>
+      )}
+    </div>
+  </div>
+</section>
